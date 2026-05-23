@@ -1,9 +1,9 @@
-import React, { useState } from 'react'
+import React, { useContext } from 'react'
 import './Cart.css'
 import { StoreContext } from '../../context/StoreContext'
 const Cart = () => {
 
-    const {cartItems,food_list,removeFromCart} = useState(StoreContext);
+    const {cartItems,food_list,removeFromCart} = useContext(StoreContext);
 
   return (
     <div className='cart'>
@@ -18,6 +18,16 @@ const Cart = () => {
         </div>
         <br />
         <hr />
+        {food_list.map((item,index)=>{
+          if(cartItems[item._id]>0)
+          {
+            return(
+              <div className='cart-items-title cart-items-item'>
+                <p>{item.name}</p>
+              </div>
+            )
+          }
+        })}
       </div>
     </div>
   )
